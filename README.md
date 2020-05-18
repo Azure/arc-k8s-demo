@@ -8,7 +8,7 @@ description: "Example repository for Azure Arc enabled Kubernetes"
 urlFragment: "update-this-to-unique-url-stub"
 ---
 
-# Official Microsoft Sample
+# Official sample for Azure Arc enabled Kubernetes
 
 This repository is an example of a basic GitOps repository that can be used with Azure Arc enabled Kubernetes.
 
