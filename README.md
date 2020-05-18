@@ -34,6 +34,8 @@ This repository is attached to one or more Azure Arc enabled Kubernetes clusters
 
 Create a GitOps configuration by using the Azure CLI extension `k8sconfiguration` referencing this sample repo.
 
+After a configuration is created Azure Arc enabled Kubernetes will instantiate the resources described in this repository. Which includes creating namespaces, deploying an example container, and updating a config map.
+
 ```console
 az k8sconfiguration create \
     --name cluster-config \
