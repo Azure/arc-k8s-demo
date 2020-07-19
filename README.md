@@ -1,16 +1,6 @@
----
-page_type: sample
-languages:
-- yaml
-products:
-- azure-arc
-description: "Example repository for Azure Arc enabled Kubernetes"
-urlFragment: "update-this-to-unique-url-stub"
----
+# Official cluster configuration sample for Azure Arc enabled Kubernetes
 
-# Official sample for Azure Arc enabled Kubernetes
-
-This repository is an example of a basic GitOps repository that can be used with Azure Arc enabled Kubernetes.
+This repository contains sample Kubernetes manifest files that can be deployed using GitOps to an Azure Arc enabled Kubernetes cluster.
 
 ## Contents
 
@@ -21,20 +11,19 @@ Outline the file contents of the repository. It helps users navigate the codebas
 | `README.md`       | This README file. |
 | `cluster-apps`    | Contains an example application that should be deployed to every cluster. |
 | `namespaces`    | Contains three namespace resources to provision on an attached cluster. |
-| `policy`    | Example policy definition for applying GitOps configurations to a cluster. |
 | `team-a`    | Contains a ConfigMap resource written into `team-a` namespace, communicates configuration data for the application team. |
-| `CODE_OF_CONDUCT.md` | Microsoft code of conuct. |
+| `CODE_OF_CONDUCT.md` | Microsoft code of conduct. |
 | `LICENSE`         | The license for the sample. |
 
 ## Prerequisites
 
-This repository is attached to one or more Azure Arc enabled Kubernetes clusters.
+One or more Kubernetes clusters are [connected to Azure Arc](https://docs.microsoft.com/en-in/azure/azure-arc/kubernetes/connect-cluster) using the `connectedk8s` Azure CLI extension.
 
 ## Running the sample
 
-Create a GitOps configuration by using the Azure CLI extension `k8sconfiguration` referencing this sample repo.
+Create a GitOps configuration referencing this sample repo by using the Azure CLI extension `k8sconfiguration` or Azure portal. Complete documentation on the available options can be found [here](https://docs.microsoft.com/en-in/azure/azure-arc/kubernetes/use-gitops-connected-cluster).
 
-After a configuration is created Azure Arc enabled Kubernetes will instantiate the resources described in this repository. Which includes creating namespaces, deploying an example container, and updating a config map.
+After a configuration is created, Azure Arc enabled Kubernetes will instantiate the resources described in this repository. This includes creating namespaces, deploying an example workload, and a config map.
 
 ```console
 az k8sconfiguration create \
