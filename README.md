@@ -4,8 +4,6 @@ This repository contains sample Kubernetes manifest files that can be deployed u
 
 ## Contents
 
-Outline the file contents of the repository. It helps users navigate the codebase, build configuration and any related assets.
-
 | File/folder       | Description                                |
 |-------------------|--------------------------------------------|
 | `README.md`       | This README file. |
