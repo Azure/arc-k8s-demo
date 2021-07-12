@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: arc-k8s-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: arc-k8s-demo
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: arc-k8s-demo
+    spec:
+      nodeSelector:
+        kubernetes.io/arch: amd64
+        kubernetes.io/os: linux
+      containers:
+      - name: arc-k8s-demo
+        image: arck8sconformance.azurecr.io/samples/demo:v0.1.0
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "125m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: arc-k8s-demo
+  labels:
+    name: arc-k8s-demo
+spec:
+  type: ClusterIP
+  ports:
+  - port: 8080
+  selector:
+    app: arc-k8s-demo
