@@ -22,7 +22,9 @@ spec:
         kubernetes.io/os: linux
       containers:
       - name: nginx
-        image: nginx     
+        image: nginx
+        securityContext:
+          privileged: true
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8081
