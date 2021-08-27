@@ -23,8 +23,6 @@ spec:
       containers:
       - name: arc-k8s-demo
         image: arck8sconformance.azurecr.io/samples/demo:v0.1.0
-        securityContext:
-          privileged: true
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
