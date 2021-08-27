@@ -23,6 +23,8 @@ spec:
       containers:
       - name: nginx
         image: nginx
+        securityContext:
+          privileged: true        
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
