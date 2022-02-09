@@ -4,7 +4,7 @@ metadata:
   name: default.allow-kube-dns
 spec:
   tier: default
-  order: 0
+  order: 5
   selector: all()
   egress:
   - action: Allow
@@ -26,7 +26,7 @@ metadata:
   namespace: storefront
 spec:
   tier: default
-  order: 20
+  order: 10
   selector: fw-zone == "restricted"
   ingress:
     - action: Allow
@@ -55,7 +55,7 @@ metadata:
   namespace: storefront
 spec:
   tier: default
-  order: 20
+  order: 10
   selector: fw-zone == "restricted"
   ingress:
     - action: Allow
@@ -77,66 +77,7 @@ spec:
     - Ingress
     - Egress
 ---
-apiVersion: projectcalico.org/v3
-kind: NetworkPolicy
-metadata:
-  name: default.dmz
-  namespace: storefront
-spec:
-  tier: default
-  order: 0
-  selector: fw-zone == "dmz"
-  ingress:
-    - action: Allow
-      source:
-        nets:
-          - 18.0.0.0/16
-      destination: {}
-    - action: Deny
-      source: {}
-      destination: {}
-  egress:
-    - action: Allow
-      source: {}
-      destination:
-        selector: fw-zone == "trusted"||app == "logging"
-    - action: Deny
-      source: {}
-      destination: {}
-  types:
-    - Ingress
-    - Egress
----
-apiVersion: projectcalico.org/v3
-kind: StagedNetworkPolicy
-metadata:
-  name: default.dmz
-  namespace: storefront
-spec:
-  tier: default
-  order: 0
-  selector: fw-zone == "dmz"
-  ingress:
-    - action: Allow
-      source:
-        nets:
-          - 18.0.0.0/16
-      destination: {}
-    - action: Deny
-      source: {}
-      destination: {}
-  egress:
-    - action: Allow
-      source: {}
-      destination:
-        selector: fw-zone == "trusted"||app == "logging"
-    - action: Deny
-      source: {}
-      destination: {}
-  types:
-    - Ingress
-    - Egress
----
+
 apiVersion: projectcalico.org/v3
 kind: NetworkPolicy
 metadata:
@@ -144,7 +85,7 @@ metadata:
   namespace: storefront
 spec:
   tier: default
-  order: 10
+  order: 20
   selector: fw-zone == "trusted"
   ingress:
     - action: Allow
@@ -181,7 +122,7 @@ metadata:
   namespace: storefront
 spec:
   tier: default
-  order: 10
+  order: 20
   selector: fw-zone == "trusted"
   ingress:
     - action: Allow
@@ -204,6 +145,67 @@ spec:
       source: {}
       destination:
         selector: fw-zone == "restricted"
+    - action: Deny
+      source: {}
+      destination: {}
+  types:
+    - Ingress
+    - Egress
+
+---
+apiVersion: projectcalico.org/v3
+kind: NetworkPolicy
+metadata:
+  name: default.dmz
+  namespace: storefront
+spec:
+  tier: default
+  order: 30
+  selector: fw-zone == "dmz"
+  ingress:
+    - action: Allow
+      source:
+        nets:
+          - 18.0.0.0/16
+      destination: {}
+    - action: Deny
+      source: {}
+      destination: {}
+  egress:
+    - action: Allow
+      source: {}
+      destination:
+        selector: fw-zone == "trusted"||app == "logging"
+    - action: Deny
+      source: {}
+      destination: {}
+  types:
+    - Ingress
+    - Egress
+---
+apiVersion: projectcalico.org/v3
+kind: StagedNetworkPolicy
+metadata:
+  name: default.dmz
+  namespace: storefront
+spec:
+  tier: default
+  order: 30
+  selector: fw-zone == "dmz"
+  ingress:
+    - action: Allow
+      source:
+        nets:
+          - 18.0.0.0/16
+      destination: {}
+    - action: Deny
+      source: {}
+      destination: {}
+  egress:
+    - action: Allow
+      source: {}
+      destination:
+        selector: fw-zone == "trusted"||app == "logging"
     - action: Deny
       source: {}
       destination: {}
