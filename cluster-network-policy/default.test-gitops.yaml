@@ -1,0 +1,26 @@
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: default.test-gitops
+spec:
+  tier: default
+  selector: app == "centos" 
+  namespaceSelector: ''
+  serviceAccountSelector: ''
+  ingress:
+    - action: Allow
+      source:
+        selector: all()
+      destination: {}
+  egress:
+  - action: Allow
+    protocol: TCP
+    source: {}
+    destination:
+      selector: app == "arc-k8s-demo"
+      namespaceSelector: ''
+      ports:
+      - '80'
+  types:
+    - Ingress
+    - Egress
