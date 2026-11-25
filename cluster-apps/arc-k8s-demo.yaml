@@ -9,6 +9,7 @@ spec:
   chart:
     spec:
       chart: podinfo
+      version: "6.17.0"
       sourceRef:
         kind: HelmRepository
         name: podinfo
@@ -17,3 +18,8 @@ spec:
   install:
     remediation:
       retries: 3
+  values:
+    image:
+      repository: azurearcfork8sdev.azurecr.io/flux-test-dependencies/stefanprodan/podinfo
+      tag: "6.17.0"
+      pullPolicy: IfNotPresent
