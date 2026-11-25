@@ -5,4 +5,5 @@ metadata:
   namespace: cluster-config
 spec:
   interval: 5m
-  url: https://stefanprodan.github.io/podinfo
+  type: oci
+  url: oci://azurearcfork8sdev.azurecr.io/flux-test-dependencies/helm
