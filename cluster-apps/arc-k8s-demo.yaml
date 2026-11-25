@@ -20,6 +20,6 @@ spec:
       retries: 3
   values:
     image:
-      repository: azurearcfork8sdev.azurecr.io/test-dependencies/stefanprodan/podinfo
+      repository: azurearcfork8sdev.azurecr.io/flux-test-dependencies/stefanprodan/podinfo
       tag: "6.17.0"
       pullPolicy: IfNotPresent
